@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+
+(*) --> "archive: start.sh"
+
+-->[archive-scan] "archive: scan.sh"
+
+-->[archive-file] "truenas: exist.sh"
+
+if "file exists" then
+    -->[archive-size] "archive: size.sh"
+    -->[truenas-size] "truenas: size-compare.sh"
+    if "size is the same" then
+        --> (*)
+    else
+        -->[archive-md5] "archive: md5.sh"
+        -->[truenas-md5] "truenas: mf5-compare.sh"
+        if "md5 is the same" then
+            --> (*)
+        else
+            -->[truenas-transfer] "truenas: pull.sh"
+        endif
+    endif
+else
+    -->[truenas-transfer] "truenas: pull.sh"
+    --> (*)
+endif
+
+@enduml
