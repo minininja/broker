@@ -1,5 +1,6 @@
 # broker
 
+Just a simple message broker along the lines of what http://patchbay.pub implements.
 
 ## Running the application in dev mode
 
