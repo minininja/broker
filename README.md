@@ -1,8 +1,5 @@
-# comms
+# broker
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
-
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
 ## Running the application in dev mode
 
@@ -35,12 +32,12 @@ The application, packaged as an _über-jar_, is now runnable using `java -jar ta
 
 You can create a native executable using: 
 ```shell script
-./mvnw package -Pnative
+mvn package -Pnative
 ```
 
 Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
 ```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
+mvn package -Pnative -Dquarkus.native.container-build=true
 ```
 
 You can then execute your native executable with: `./target/getting-started-1.0.0-SNAPSHOT-runner`
