@@ -17,7 +17,7 @@ import java.util.UUID;
 @Path("/v1/comms")
 @Consumes(MediaType.TEXT_PLAIN)
 @Produces(MediaType.TEXT_PLAIN)
-public class CommsResource {
+public class BrokerResource {
 
     @Inject
     protected MessageStore messageStore;
@@ -45,7 +45,6 @@ public class CommsResource {
             throw new NotFoundException();
         }
         return content;
-//        return Uni.createFrom().item(content);
     }
 
 }

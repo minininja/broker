@@ -2,6 +2,7 @@ package org.dorkmaster.comms.message;
 
 import org.dorkmaster.comms.exception.ChannelNotFoundException;
 import org.dorkmaster.comms.exception.MessagePollerTimeoutException;
+import org.dorkmaster.comms.util.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +17,9 @@ import java.util.concurrent.atomic.AtomicLong;
 @ApplicationScoped
 public class MessageStoreImpl implements MessageStore {
 
-    public static final int QUEUE_LIMIT = 100;
+    // TODO make this convfigurable via an environment variable
+    public static final int QUEUE_LIMIT = new Param("QUEUE_LIMIT").asInt(10000);
+
     protected Map<String, BlockingQueue<String>> store = new ConcurrentHashMap<>();
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
     protected AtomicLong published = new AtomicLong(0L);

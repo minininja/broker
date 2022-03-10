@@ -10,10 +10,10 @@
 if [ "$1" != "$2" ]
 then
   echo "Sending $2"
-  wget --post-data="$2" "http://avias.home.lan:8080/v1/comms/$3" --header="Content-Type: text/plain" -q -O /dev/null
+  wget --post-data="$2" "http://mini:30010/v1/comms/$3" --header="Content-Type: text/plain" -q -O /dev/null
   while [ $? -ne 0 ]
   do
     sleep 0.5
-    wget --post-data="$2" "http://avias.home.lan:8080/v1/comms/$3" --header="Content-Type: text/plain" -q -O /dev/null
+    wget --post-data="$2" "http://mini:30010/v1/comms/$3" --header="Content-Type: text/plain" -q -O /dev/null
   done
 fi

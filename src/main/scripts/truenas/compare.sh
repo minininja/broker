@@ -1,7 +1,7 @@
 #!/bin/sh
 while (true)
 do
-    MSG=`wget -O - -o /dev/null -q http://avias.home.lan:8080/v1/comms/archive-file-md5`
+    MSG=`wget -O - -o /dev/null -q http://mini:30010/v1/comms/archive-file-md5`
     CNT=`echo $MSG | wc -c`
     if [ $CNT -gt 2 ];
     then
@@ -22,11 +22,11 @@ do
       if [ "$REMOTE_SUM" != "$LOCAL_SUM" ];
       then
         echo "mismatch $REMOTE_NAME $REMOTE_SUM $LOCAL_SUM $LOCAL_NAME"
-        wget --post-data="${REMOTE_NAME}|${LOCAL_NAME}" http://avias.home.lan:8080/v1/comms/truenas-file-pull --header="Content-Type: text/plain" -q -O /dev/null
+        wget --post-data="${REMOTE_NAME}|${LOCAL_NAME}" http://mini:30010/v1/comms/truenas-file-pull --header="Content-Type: text/plain" -q -O /dev/null
         while [ $? -ne 0 ]
         do
           sleep 0.5
-          wget --post-data="${REMOTE_NAME}|${LOCAL_NAME}" http://avias.home.lan:8080/v1/comms/truenas-file-pull --header="Content-Type: text/plain" -q -O /dev/null
+          wget --post-data="${REMOTE_NAME}|${LOCAL_NAME}" http://mini:30010/v1/comms/truenas-file-pull --header="Content-Type: text/plain" -q -O /dev/null
         done
       else
         echo "match $REMOTE_NAME"
